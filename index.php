@@ -15,7 +15,7 @@ body {
 
 /* Style the header #2A75FF #135CAF*/
 .header {
-  background-color: #FF432A;
+  background-color: #99989A;
   padding: 30px;
   text-align: center;
   font-size: 35px;
@@ -25,7 +25,7 @@ body {
 .column {
   float: left;
   padding: 10px;
-  height: 500px; /* Should be removed. Only for demonstration */
+  height: 450px; 
 }
 
 /* Left and right column */
@@ -67,7 +67,7 @@ body {
 <p>Text2</p>
 
 <div class="header">
-<h2>Header2/</h2>
+<h2>Header2</h2>
 </div>
 
 <div class="row">
