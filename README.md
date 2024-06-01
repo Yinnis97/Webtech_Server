@@ -16,6 +16,9 @@ By completing this project, students will gain practical experience in web devel
 PostgreSQL : https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04
 
 Caddy & PHP : https://linuxiac.com/installing-caddy-with-php-and-ssl-support-on-ubuntu-22-04/
+
+W3schools : w3schools.com/html/default.asp
+
 ## Usage/Examples
 
 The Website link : https://server-of-yinnis.pxl.bjth.xyz/

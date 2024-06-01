@@ -12,7 +12,7 @@
             <ul>
                 <li><a href=index.html>Home</a></li>
                 <li><a href=About.html>About</a></li>
-                <li><a href=Data.php>Data</a></li>
+                <li><a href=data.php>Data</a></li>
                 <li><a href=Extra.html>Extra</a></li>
                 <li><a href=Game.html>PlayAGame</a></li>
             </ul>
@@ -20,23 +20,15 @@
     </header>
     <main>
         <section id="home">
-            <h1>Welcome to Our Project</h1>
-            <p>This is a sample web application for the Web Technologies project.</p>
+            <h1>Data</h1>
+            <p>Work In Progress.</p>
         </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-                <button type="submit">Submit</button>
-            </form>
-        </section>
+       
     </main>
+
     <footer>
-        <p>&copy; 2024 Web Technologies Project</p>
+      <p>&copy; 2024 Web Technologies Project</p>
     </footer>
-    <script src="scripts.js"></script>
+    
 </body>
 </html>
