@@ -3,15 +3,15 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3000;
+const port = 5432;
 
 app.use(bodyParser.json());
 
 // Create a connection to the database
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'root',
+  user: 'yinnis',
+  password: 'serveryin126',
   database: 'game_scores'
 });
 
