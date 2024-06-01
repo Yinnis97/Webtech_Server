@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'yourpassword',
+  password: 'root',
   database: 'game_scores'
 });
 
@@ -39,5 +39,5 @@ app.post('/save-score', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on https://server-of-yinnis.pxl.bjth.xyz/`);
 });
