@@ -17,7 +17,7 @@ PostgreSQL : https://www.digitalocean.com/community/tutorials/how-to-install-and
 
 Caddy & PHP : https://linuxiac.com/installing-caddy-with-php-and-ssl-support-on-ubuntu-22-04/
 
-W3schools : w3schools.com/html/default.asp
+W3schools : https://www.3schools.com/html/default.asp
 
 ## Usage/Examples
 
