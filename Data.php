@@ -19,6 +19,7 @@
     <main>
         <section id="home">
             <h2>De temperatuur van de PYNQ Z2.</h2>
+	
             <div id="receivedData">
                 Data wordt hier weergegeven...
             </div>
@@ -37,15 +38,19 @@
                         dataContainer.innerHTML = '';
 
                         // Controleer of er een foutmelding in de data zit
-                        if (data.error) {
+                        if (data.error) 
+						{
                             // Toon de foutmelding
                             const errorDiv = document.createElement('div');
                             errorDiv.className = 'error';
                             errorDiv.textContent = `Error: ${data.error}`;
                             dataContainer.appendChild(errorDiv);
-                        } else {
+                        } 
+						else 
+						{
                             // Loop door de ontvangen JSON data en toon deze
-                            data.forEach(entry => {
+                            data.forEach(entry => 
+							{
                                 const entryDiv = document.createElement('div');
                                 entryDiv.className = 'log-entry';
                                 entryDiv.textContent = entry;
