@@ -1,8 +1,0 @@
-server-of-yinnis.pxl.bjth.xyz 
-{
-root * /var/www/html
-tls Kempeneers.Yinnis@student.pxl.be
-encode gzip zstd
-php_fastcgi unix//run/php/php8.3-fpm.sock
-file_server
-}
