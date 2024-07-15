@@ -18,11 +18,12 @@
     </header>
     <main>
         <section id="home">
+		<h2>De temperatuur van de PYNQ Z2.</h2>
           <div id="receivedData">
            Data wordt hier weergegeven...
           </div>
 
-            <script>
+			<script>
                 // Haal de ontvangen data op via een Fetch request
                 fetch('https://server-of-yinnis.pxl.bjth.xyz/api/v1/temperature.php')
                     .then(response => {
@@ -32,12 +33,33 @@
                         return response.json();
                     })
                     .then(data => {
-                        // Toon de ontvangen data in de div met id 'receivedData'
-                        document.getElementById('receivedData').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                        const dataContainer = document.getElementById('receivedData');
+                        dataContainer.innerHTML = '';
+
+                        // Controleer of er een foutmelding in de data zit
+                        if (data.error) {
+                            // Toon de foutmelding
+                            const errorDiv = document.createElement('div');
+                            errorDiv.className = 'error';
+                            errorDiv.textContent = `Error: ${data.error}`;
+                            dataContainer.appendChild(errorDiv);
+                        } else {
+                            // Toon de ontvangen temperatuur op een mooie manier
+                            const tempDiv = document.createElement('div');
+                            tempDiv.className = 'temperature';
+
+                            const temp = document.createElement('p');
+                            temp.textContent = `Temperature: ${data.temperature} °C`;
+
+                            // Voeg het temperatuur element toe aan de container
+                            tempDiv.appendChild(temp);
+                            dataContainer.appendChild(tempDiv);
+                        }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        document.getElementById('receivedData').innerHTML = '<div style="color: red;">Er is een fout opgetreden bij het ophalen van de data.</div>';
+                        const dataContainer = document.getElementById('receivedData');
+                        dataContainer.innerHTML = '<div style="color: red;">Er is een fout opgetreden bij het ophalen van de data.</div>';
                     });
             </script>
 
