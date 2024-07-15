@@ -6,6 +6,19 @@
     <title>Web Technologies Project</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
+<script>
+    // Functie om de pagina na 30 seconden te vernieuwen
+    function refreshPage() {
+        setTimeout(function() {
+            location.reload();
+        }, 30000); // 30 seconden in milliseconden
+    }
+
+    // Roep de functie aan wanneer de pagina geladen is
+    window.onload = refreshPage;
+</script>
+
 <body>
     <header>
         <nav>
@@ -51,14 +64,25 @@
                         } 
 						else 
 						{
-                            // Loop door de ontvangen JSON data en toon deze
-                            data.forEach(entry => 
-							{
-                                const entryDiv = document.createElement('div');
-                                entryDiv.className = 'log-entry';
-                                entryDiv.textContent = entry;
-                                dataContainer.appendChild(entryDiv);
-                            });
+data.forEach(entry => {
+    // Parse de JSON-string naar een JavaScript-object
+    const parsedEntry = JSON.parse(entry);
+
+    // Haal de waarde op die je wilt tonen, bijvoorbeeld 'temperature'
+    const temperatureValue = parsedEntry.temperature;
+
+    // Maak een div element aan
+    const entryDiv = document.createElement('div');
+    entryDiv.className = 'log-entry';
+
+    // Voeg de tekst "De temperatuur is " toe aan de tekstcontent
+    entryDiv.textContent = `De temperatuur is ${temperatureValue} °C`;
+
+    // Voeg het element toe aan de container
+    dataContainer.appendChild(entryDiv);
+});
+
+
 							
                         }
                     })
