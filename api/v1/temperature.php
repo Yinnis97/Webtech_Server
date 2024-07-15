@@ -10,11 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $data = json_decode($body, true);
 
-    // Log the JSON decoding result
-    // if (file_put_contents($logfile, "JSON decoded: " . print_r($data, true) . PHP_EOL, FILE_APPEND) === false) {
-    //    error_log("Failed to write to log file: " . $logfile);
-    // }
-
     // Controleer of er data is ontvangen
     if ($data !== null) {
         // Data is ontvangen, stuur de data als JSON response terug
@@ -44,10 +39,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Content-Type: application/json');
         echo json_encode(['error' => 'Het logbestand bestaat niet.']);
     }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // Wis de inhoud van het logbestand
+    if (file_exists($logfile)) {
+        if (file_put_contents($logfile, '') !== false) {
+            header('Content-Type: application/json');
+            echo json_encode(['message' => 'Logbestand is gewist.']);
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Kon logbestand niet wissen.']);
+        }
+    } else {
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Het logbestand bestaat niet.']);
+    }
 } else {
-    // Als de request methode niet POST of GET is
+    // Als de request methode niet POST, GET of DELETE is
     header('Content-Type: application/json');
     echo json_encode(['error' => 'Ongeldige verzoeksmethode.']);
 }
 ?>
-

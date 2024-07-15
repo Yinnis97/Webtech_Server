@@ -19,12 +19,15 @@
     <main>
         <section id="home">
             <h2>De temperatuur van de PYNQ Z2.</h2>
-	
+	        <p>De temperatuur van de PYNQ wordt ongeveer elke minut gemeten en verstuurd naar de API.</p>
+			
             <div id="receivedData">
                 Data wordt hier weergegeven...
             </div>
+			
+            <button id="deleteDataBtn">Verwijder data</button>
 
-            <script>
+<script>
                 // Haal de ontvangen data op via een Fetch request
                 fetch('https://server-of-yinnis.pxl.bjth.xyz/api/v1/temperature.php')
                     .then(response => {
@@ -56,6 +59,7 @@
                                 entryDiv.textContent = entry;
                                 dataContainer.appendChild(entryDiv);
                             });
+							
                         }
                     })
                     .catch(error => {
@@ -63,7 +67,32 @@
                         const dataContainer = document.getElementById('receivedData');
                         dataContainer.innerHTML = '<div style="color: red;">Er is een fout opgetreden bij het ophalen van de data.</div>';
                     });
-            </script>
+</script>
+
+<script>
+    document.getElementById('deleteDataBtn').addEventListener('click', function() {
+        fetch('https://server-of-yinnis.pxl.bjth.xyz/api/v1/temperature.php', {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Toon een bevestiging aan de gebruiker dat de data verwijderd is
+            alert('Data succesvol verwijderd!');
+            // Vernieuw de pagina om de laatste data te tonen
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Er is een fout opgetreden bij het verwijderen van de data.');
+        });
+    });
+</script>
+
         </section>
     </main>
 
