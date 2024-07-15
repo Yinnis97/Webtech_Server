@@ -10,20 +10,20 @@
     <header>
         <nav>
             <ul>
-                <li><a href=index.html>Home</a></li>
-                <li><a href=About.html>About</a></li>
-                <li><a href=Data.php>Data</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="data.php">Data</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="home">
-		<h2>De temperatuur van de PYNQ Z2.</h2>
-          <div id="receivedData">
-           Data wordt hier weergegeven...
-          </div>
+            <h2>De temperatuur van de PYNQ Z2.</h2>
+            <div id="receivedData">
+                Data wordt hier weergegeven...
+            </div>
 
-			<script>
+            <script>
                 // Haal de ontvangen data op via een Fetch request
                 fetch('https://server-of-yinnis.pxl.bjth.xyz/api/v1/temperature.php')
                     .then(response => {
@@ -44,16 +44,13 @@
                             errorDiv.textContent = `Error: ${data.error}`;
                             dataContainer.appendChild(errorDiv);
                         } else {
-                            // Toon de ontvangen temperatuur op een mooie manier
-                            const tempDiv = document.createElement('div');
-                            tempDiv.className = 'temperature';
-
-                            const temp = document.createElement('p');
-                            temp.textContent = `Temperature: ${data.temperature} °C`;
-
-                            // Voeg het temperatuur element toe aan de container
-                            tempDiv.appendChild(temp);
-                            dataContainer.appendChild(tempDiv);
+                            // Loop door de ontvangen JSON data en toon deze
+                            data.forEach(entry => {
+                                const entryDiv = document.createElement('div');
+                                entryDiv.className = 'log-entry';
+                                entryDiv.textContent = entry;
+                                dataContainer.appendChild(entryDiv);
+                            });
                         }
                     })
                     .catch(error => {
@@ -62,15 +59,11 @@
                         dataContainer.innerHTML = '<div style="color: red;">Er is een fout opgetreden bij het ophalen van de data.</div>';
                     });
             </script>
-
         </section>
-       
     </main>
 
     <footer>
-      <p>&copy; 2024 Web Technologies Project</p>
+        <p>&copy; 2024 Web Technologies Project</p>
     </footer>
-    
 </body>
-
 </html>
