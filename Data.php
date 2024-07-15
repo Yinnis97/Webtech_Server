@@ -18,23 +18,29 @@
     </header>
     <main>
         <section id="home">
-<div id="receivedData">
-  Data wordt hier weergegeven...
-</div>
+          <div id="receivedData">
+           Data wordt hier weergegeven...
+          </div>
 
-<script>
-// Haal de ontvangen data op via een Fetch request
-fetch('https://server-of-yinnis.pxl.bjth.xyz/api/v1/temperature.php')
-  .then(response => response.json())
-  .then(data => {
-    // Toon de ontvangen data in de div met id 'receivedData'
-    document.getElementById('receivedData').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    document.getElementById('receivedData').innerHTML = '<div style="color: red;">Er is een fout opgetreden bij het ophalen van de data.</div>';
-  });
-</script>
+            <script>
+                // Haal de ontvangen data op via een Fetch request
+                fetch('https://server-of-yinnis.pxl.bjth.xyz/api/v1/temperature.php')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Toon de ontvangen data in de div met id 'receivedData'
+                        document.getElementById('receivedData').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById('receivedData').innerHTML = '<div style="color: red;">Er is een fout opgetreden bij het ophalen van de data.</div>';
+                    });
+            </script>
+
         </section>
        
     </main>
