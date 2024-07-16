@@ -10,29 +10,27 @@
     <header>
         <nav>
             <ul>
-                <li><a href=index.html>Home</a></li>
-                <li><a href=About.html>About</a></li>
-                <li><a href=Data.php>Data</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Data.php">Data</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="home">
-            <h1>Welcome to my Project</h1>
-            
+            <h1>Welcome to my Project</h1>      
         </section>
-        <section id="contact">
-            <h2>Contact</h2>
-			<p>Made By Y.K.</p>
-			
-
-    </form>
-            
-        </section>
+		
+		<h2>Contact</h2>
+		<p>
+		<a href="https://github.com/Yinnis97/Webtech_Server">GitHub Link</a>  
+		</p>
+		
     </main>
+	
     <footer>
         <p>&copy; 2024 Web Technologies Project</p>
     </footer>
- <script src="script.js"></script>
+ 
 </body>
 </html>

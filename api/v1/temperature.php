@@ -6,7 +6,8 @@ header("Content-Type: application/json");
 
 //soms wordt er eerst een OPTIONS req gestuurd om te checken of de server wel POST GET etc accepteerd 
 //Zo ja dan stuurt de server code 204 terug.
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') 
+{
     http_response_code(204);
     exit();
 }
@@ -23,17 +24,22 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 
-try {
+try 
+{
     $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
+} 
+catch (\PDOException $e) 
+{
     echo json_encode(['error' => $e->getMessage()]);
     exit;
 }
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $input = json_decode(file_get_contents('php://input'), true);
-    if (isset($input['temperature'])) {
+    if (isset($input['temperature'])) 
+	{
         $temperature = $input['temperature'];
         
         // Huidige datum en tijd in UTC
@@ -48,10 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $stmt->execute(['temperature' => $temperature, 'currentDateTime' => $currentDateTimeBrussels]);
 
         echo json_encode(['status' => 'success', 'message' => 'Temperature and date logged successfully']);
-    } else {
+    } 
+	else 
+	{
         echo json_encode(['error' => 'Temperature not provided']);
     }
 } 
+
 elseif ($_SERVER['REQUEST_METHOD'] === 'GET') 
 {
     $sql = 'SELECT * FROM log_table';
@@ -59,19 +68,25 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'GET')
     $data = $stmt->fetchAll();
     echo json_encode($data);
 } 
-elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    try {
+
+elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') 
+{
+    try 
+	{
         // Delete row with maximum equip_id
         $sql = 'DELETE FROM log_table WHERE equip_id = (SELECT MAX(equip_id) FROM log_table)';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
         echo json_encode(['status' => 'success', 'message' => 'Last temperature data deleted successfully']);
-    } catch (\PDOException $e) {
+    } 
+	catch (\PDOException $e) 
+	{
         http_response_code(500); // Set HTTP response code 500
         echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
     }
 }
+
 else 
 {
     // Als de request methode niet POST, GET of DELETE is

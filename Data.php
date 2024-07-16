@@ -12,7 +12,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="About.html">About</a></li>
-                <li><a href="data.php">Data</a></li>
+                <li><a href="Data.php">Data</a></li>
             </ul>
         </nav>
     </header>
@@ -33,29 +33,35 @@
 
     <script>
         // Functie om de pagina na 30 seconden te vernieuwen
-        function refreshPage() {
-            setTimeout(function() {
+        function refreshPage() 
+		{
+            setTimeout(function() 
+			{
                 location.reload();
             }, 30000); // 30 seconden in milliseconden
         }
 
         // Roep de functie aan wanneer de pagina geladen is
-        window.onload = function() {
+        window.onload = function() 
+		{
             refreshPage();
             fetchTemperatureData();
         };
 
         // Functie om temperatuurdata op te halen en weer te geven
-        function fetchTemperatureData() {
+        function fetchTemperatureData() 
+		{
             fetch('https://server-of-yinnis.pxl.bjth.xyz/api/v1/temperature.php')
                 .then(response => response.json())
                 .then(data => {
                     const temperatureDataDiv = document.getElementById('temperature-data');
-                    if (data.length > 0) {
+                    if (data.length > 0) 
+					{
                         const latestData = data[data.length - 1]; // Laatste record
                         temperatureDataDiv.innerHTML = `<p>Temperatuur: ${latestData.log_data} &#8451;</p>
                                                         <p>Datum: ${latestData.install_date}</p>`;
-                    } else {
+                    } else 
+					{
                         temperatureDataDiv.innerHTML = '<p>Geen temperatuurdata beschikbaar.</p>';
                     }
                 })
@@ -65,7 +71,8 @@
                 });
         }
 
-	function deleteLastTemperature() {
+	function deleteLastTemperature() 
+	{
     fetch('https://server-of-yinnis.pxl.bjth.xyz/api/v1/temperature.php', {
         method: 'DELETE'
     })
