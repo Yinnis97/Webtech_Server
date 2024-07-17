@@ -13,6 +13,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="About.html">About</a></li>
                 <li><a href="Data.php">Data</a></li>
+				<li><a href="Grafiek.php">Grafiek</a></li>
             </ul>
         </nav>
     </header>
